@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import eu.fr.indyli.formation.business.dao.IEcolisUserDAO;
 import eu.fr.indyli.formation.business.dto.EcolisUserDto;
 import eu.fr.indyli.formation.business.ecolis.exception.EcolisBusinessException;
