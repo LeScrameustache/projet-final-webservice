@@ -5,11 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +18,7 @@ import eu.fr.indyli.formation.business.ecolis.service.IEcolisUserService;
 import eu.fr.indyli.formation.business.utils.EcolisConstantes.EcolisConstantesService;
 
 @Service(EcolisConstantesService.USER_SERVICE_KEY)
-public class EcolisUserServiceImpl extends AbstractEntityServiceImpl<EcolisUserDto> implements IEcolisUserService, UserDetailsService {
+public class EcolisUserServiceImpl extends AbstractEntityServiceImpl<EcolisUserDto> implements IEcolisUserService {
 
   private IEcolisUserDAO userDAO = new EcolisUserDAOImpl();
 
@@ -34,29 +30,12 @@ public class EcolisUserServiceImpl extends AbstractEntityServiceImpl<EcolisUserD
   }
 
   @Override
-  public EcolisUserDto findByLoginAndPassword(String email, String password)
-      throws EcolisBusinessException {
-    if (StringUtils.isBlank(email) || StringUtils.isBlank(password)) {
-      throw new EcolisBusinessException("VOUS DEVEZ RENSEINGER LES 2 CHAMPS");
-    }
-    EcolisUserDto foundUser = userDAO.findByLoginAndPassword(email, password);
-    return foundUser;
-  }
-
-  @Override
   public List<EcolisUserDto> findAuthorsCommentByDateAndPostedAnnonce(Date paramDatePivot,
       String paramVilleArrivee) throws EcolisBusinessException {
     if (StringUtils.isBlank(paramVilleArrivee) || paramDatePivot == null) {
       throw new EcolisBusinessException("VOUS DEVEZ RENSEINGER LES 2 CHAMPS");
     }
     return userDAO.findAuthorsCommentByDateAndPostedAnnonce(paramDatePivot, paramVilleArrivee);
-  }
-
-  @Override
-  public EcolisUserDto findByEmail(String email) throws EcolisBusinessException {
-    if (StringUtils.isBlank(email))
-      throw new EcolisBusinessException("VOUS DEVEZ RENSEINGER L'EMAIL");
-    return this.userDAO.findByEmail(email);
   }
 
   @Override
@@ -99,25 +78,20 @@ public class EcolisUserServiceImpl extends AbstractEntityServiceImpl<EcolisUserD
     return user;
   }
 
-  @Override
-  public EcolisUserDto findByLogin(String login) throws EcolisBusinessException {
-    return this.userDAO.findByLogin(login);
-  }
-
-  public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+  /*public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
     EcolisUserDto user = userDAO.findByLogin(login);
     if (user == null) {
       throw new UsernameNotFoundException("Invalid Login or Password.");
     }
     return new org.springframework.security.core.userdetails.User(user.getLogin(),
         user.getPassword(), getAuthority());
-  }
+  }*/
 
-  private List<SimpleGrantedAuthority> getAuthority() {
+  /*private List<SimpleGrantedAuthority> getAuthority() {
     return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"),
         new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
     // ROLE_ANONYMOUS
-  }
+  }*/
 
   @Override
   public List<EcolisUserDto> findByLoginOrEmail(String login, String email)

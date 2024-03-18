@@ -13,20 +13,6 @@ import eu.fr.indyli.formation.business.ecolis.exception.EcolisBusinessException;
  */
 public interface IEcolisUserService extends IEntityService<EcolisUserDto>{
 
-	/**
-     * recupere un utilisateur par son login et son password
-     * @param login : Login de l'utilisateur qu'on souhaite recuperer
-     * @param password : Password de l'utilisateur qu'on souhaite recuperer
-     * @return : Utilisateur recherche
-     */
-    public EcolisUserDto findByLoginAndPassword(String login,String password) throws EcolisBusinessException ;
-    /**
-     * recupere un utilisateur par son login et son password
-     * @param login : Login de l'utilisateur qu'on souhaite recuperer
-     * @param password : Password de l'utilisateur qu'on souhaite recuperer
-     * @return : Utilisateur recherche
-     */
-    public EcolisUserDto findByLogin(String login) throws EcolisBusinessException ;
     /**
      * Remonte les auteurs de comment postés après une date et ayant déposé une annonce pour ville arrivee donnée
      * @param pDatePivot : Date pivot de depot du commentaire
@@ -34,12 +20,6 @@ public interface IEcolisUserService extends IEntityService<EcolisUserDto>{
      * @return
      */
     public List<EcolisUserDto> findAuthorsCommentByDateAndPostedAnnonce(Date paramDatePivot,String paramVilleArrivee) throws EcolisBusinessException;
-    /**
-     * Recupere un utilisateur par son email
-     * @param email
-     * @return
-     */
-    public EcolisUserDto findByEmail(String email) throws EcolisBusinessException;
     
 	/**
 	 * Recherche les utilisateurs par email ou login

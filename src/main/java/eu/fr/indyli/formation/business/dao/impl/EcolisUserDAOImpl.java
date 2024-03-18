@@ -19,41 +19,11 @@ public class EcolisUserDAOImpl extends AbstractEntityDAOImpl<EcolisUserDto> impl
 	    }
 	    return null;
 	}
-	
-	@Override
-	public EcolisUserDto findByLoginAndPassword(String login, String password) {
-		for (EcolisUserDto user : entityInMemory) {
-	        if (user != null && user.getLogin().equals(login) && user.getPassword().equals(password)) {
-	            return user; 
-	        }
-	    }
-	    return null;
-	}
 
 	@Override
 	public List<EcolisUserDto> findAuthorsCommentByDateAndPostedAnnonce(Date paramDatePivot,
 			String paramVilleArrivee) {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public EcolisUserDto findByEmail(String email) {
-		for (EcolisUserDto entity : entityInMemory) {
-	        if (entity != null && entity.getEmail().equals(email)) {
-	            return entity;
-	        }
-	    }
-		return null;
-	}
-
-	@Override
-	public EcolisUserDto findByLogin(String login) {
-		for (EcolisUserDto entity : entityInMemory) {
-	        if (entity != null && entity.getLogin().equals(login)) {
-	            return entity;
-	        }
-	    }
 		return null;
 	}
 

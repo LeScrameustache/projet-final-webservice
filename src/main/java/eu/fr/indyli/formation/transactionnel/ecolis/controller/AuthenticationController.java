@@ -35,14 +35,14 @@ public class AuthenticationController {
     private IEcolisUserService userService;
     
 
-    @RequestMapping(value = "/generate-token", method = RequestMethod.POST)
+    /*@RequestMapping(value = "/generate-token", method = RequestMethod.POST)
     public ApiResponse<AuthToken> register(@RequestBody EcolisUserDto loginUser) throws AuthenticationException, EcolisBusinessException {
 
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginUser.getLogin(), loginUser.getPassword()));
         final EcolisUserDto user = userService.findByLogin(loginUser.getLogin());
         final String token = jwtTokenUtil.generateToken(user);
         return new ApiResponse<AuthToken>(200, "success",new AuthToken(token, user.getLogin()));
-    }
+    }*/
     
     @RequestMapping(value = "/is-token-valid", method = RequestMethod.POST,consumes=MediaType.APPLICATION_JSON_VALUE)
     public ApiResponse<Boolean> register(@RequestBody AuthToken tokenValue) throws AuthenticationException, EcolisBusinessException {
