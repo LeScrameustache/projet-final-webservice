@@ -18,7 +18,9 @@ public class EcolisConstantes {
 	public final class EcolisConstantesService {
 		public static final String USER_SERVICE_KEY = "userService";
 		public static final String ALERTE_SERVICE_KEY = "alerteService";
+		public static final String ADVERTISING_SERVICE_KEY = "advertisingService";
 		public static final String MESSAGE_SERVICE_KEY = "messageService";
 		public static final String MESSAGE_SANS_ANN_SERVICE_KEY = "messageSansAnnonceService";
+		public static final String COMMENT_SERVICE_KEY = "commentService";
 	}
 }

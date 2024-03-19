@@ -27,4 +27,8 @@ public interface IEcolisUserDAO extends IEntityDAO<EcolisUserDto>{
      * @throws EcolisBusinessException
      */
     public List<EcolisUserDto> findByLoginOrEmail(String login,String email) throws EcolisBusinessException;
+    
+    public EcolisUserDto findByEmail(String email);
+    public EcolisUserDto findByLogin(String login);
+    public EcolisUserDto findByLoginAndPassword(String login,String password);
 }

@@ -48,7 +48,37 @@ public class EcolisUserDAOImpl extends AbstractEntityDAOImpl<EcolisUserDto> impl
 	    }
 	    return result;
 	}
+	
+	@Override
+	public EcolisUserDto findByEmail(String email) {
+		for(EcolisUserDto entity:entityInMemory) {
+			if (entity!=null && entity.getEmail().equals(email)) {
+				return entity;
+			}
+		}
+		return null;
+	}
 
+	@Override
+	public EcolisUserDto findByLogin(String login) {
+		for(EcolisUserDto entity:entityInMemory) {
+			if (entity!=null && entity.getLogin().equals(login)) {
+				return entity;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public EcolisUserDto findByLoginAndPassword(String login, String password) {
+		for(EcolisUserDto entity:entityInMemory) {
+			if (entity!=null && entity.getLogin().equals(login) && entity.getPassword().equals(password)) {
+				return entity;
+			}
+		}
+		return null;
+	}
+	
 	@Override
 	public void initData() {
 		entityInMemory =  new ArrayList<EcolisUserDto>();
@@ -135,5 +165,7 @@ public class EcolisUserDAOImpl extends AbstractEntityDAOImpl<EcolisUserDto> impl
 		user6.setPhone("065987412");
 		entityInMemory.add(user6);
 	}
+
+	
 
 }

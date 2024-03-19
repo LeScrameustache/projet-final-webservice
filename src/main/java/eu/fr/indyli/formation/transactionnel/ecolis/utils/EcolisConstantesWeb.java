@@ -18,6 +18,13 @@ public class EcolisConstantesWeb {
     public final static String PATH_USER = "/users";
     public final static String PATH_USER_ID = "/{userId}";
     public final static String PATH_MESSAGE = "/messages";
+    public final static String PATH_MESSAGE_ID = "/{messageId}";
     public final static String PATH_USER_MESSAGE = "/users/{email:.+}/";
+    public final static String PATH_ALERT = "/alerts";
+	public static final String PATH_ALERT_ID = "/{alertId}";
+	public final static String PATH_ADVERTISING = "/advertisings";
+	public static final String PATH_ADVERTISING_ID = "/{advertisingId}";
+	public final static String PATH_COMMENT = "/comments";
+	public final static String PATH_COMMENT_ID = "/{commentId}";
   }
 }

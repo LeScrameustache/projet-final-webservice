@@ -9,6 +9,7 @@ import eu.fr.indyli.formation.business.ecolis.service.IEntityService;
 public abstract class AbstractEntityServiceImpl<E> implements IEntityService<E>{
 
 	public abstract IEntityDAO<E> getDAO();
+	
 	@Override
 	public List<E> findAll() {
 		// TODO Auto-generated method stub

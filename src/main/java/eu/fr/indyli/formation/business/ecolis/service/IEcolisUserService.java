@@ -31,4 +31,8 @@ public interface IEcolisUserService extends IEntityService<EcolisUserDto>{
 	 public List<EcolisUserDto> findByLoginOrEmail(String login,String email) throws EcolisBusinessException;
 	 
 	 public EcolisUserDto update(EcolisUserDto user) throws EcolisBusinessException;
+	 
+	 public EcolisUserDto findByEmail(String email);
+	 public EcolisUserDto findByLogin(String login);
+	 public EcolisUserDto findByLoginAndPassword(String login,String password);
 }

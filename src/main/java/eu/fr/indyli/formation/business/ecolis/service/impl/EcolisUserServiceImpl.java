@@ -6,6 +6,9 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +21,7 @@ import eu.fr.indyli.formation.business.ecolis.service.IEcolisUserService;
 import eu.fr.indyli.formation.business.utils.EcolisConstantes.EcolisConstantesService;
 
 @Service(EcolisConstantesService.USER_SERVICE_KEY)
-public class EcolisUserServiceImpl extends AbstractEntityServiceImpl<EcolisUserDto> implements IEcolisUserService {
+public class EcolisUserServiceImpl extends AbstractEntityServiceImpl<EcolisUserDto> implements IEcolisUserService, UserDetailsService {
 
   private IEcolisUserDAO userDAO = new EcolisUserDAOImpl();
 
@@ -78,20 +81,20 @@ public class EcolisUserServiceImpl extends AbstractEntityServiceImpl<EcolisUserD
     return user;
   }
 
-  /*public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-    EcolisUserDto user = userDAO.findByLogin(login);
+  public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+    EcolisUserDto user = null;
     if (user == null) {
       throw new UsernameNotFoundException("Invalid Login or Password.");
     }
     return new org.springframework.security.core.userdetails.User(user.getLogin(),
         user.getPassword(), getAuthority());
-  }*/
+  }
 
-  /*private List<SimpleGrantedAuthority> getAuthority() {
+  private List<SimpleGrantedAuthority> getAuthority() {
     return Arrays.asList(new SimpleGrantedAuthority("ROLE_ADMIN"),
         new SimpleGrantedAuthority("ROLE_ANONYMOUS"));
     // ROLE_ANONYMOUS
-  }*/
+  }
 
   @Override
   public List<EcolisUserDto> findByLoginOrEmail(String login, String email)
@@ -129,6 +132,21 @@ public class EcolisUserServiceImpl extends AbstractEntityServiceImpl<EcolisUserD
 			
     		return this.userDAO.create(existingUser); 
 		}
+	}
+
+	@Override
+	public EcolisUserDto findByEmail(String email) {
+		return this.userDAO.findByEmail(email);
+	}
+
+	@Override
+	public EcolisUserDto findByLogin(String login) {
+		return this.userDAO.findByLogin(login);
+	}
+
+	@Override
+	public EcolisUserDto findByLoginAndPassword(String login, String password) {
+		return this.userDAO.findByLoginAndPassword(login, password);
 	}
 
 }
